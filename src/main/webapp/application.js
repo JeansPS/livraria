@@ -1,3 +1,1 @@
-/**
- * Created by itai on 12/06/15.
- */
+var app = angular.module('livraria', ['ui.router', 'ngResource']);
