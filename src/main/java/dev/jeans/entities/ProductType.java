@@ -7,31 +7,22 @@ import org.springframework.format.annotation.DateTimeFormat;
 
 import java.util.Date;
 
-public class Product {
+public class ProductType {
 
     @Id
     private String id;
 
     @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME)
-    private Date createdAt =  new Date();
+    private Date createdAt;
 
     private String name;
-    private Double cost;
-    private Double price;
-    private String description;
 
     @JsonCreator()
-    public Product(
+    public ProductType(
             @JsonProperty("createdAt") Date createdAt,
-            @JsonProperty("name") String name,
-            @JsonProperty("cost") Double cost,
-            @JsonProperty("price") Double price,
-            @JsonProperty("description") String description) {
+            @JsonProperty("name") String name ) {
         this.createdAt = createdAt;
         this.name = name;
-        this.cost = cost;
-        this.price = price;
-        this.description = description;
     }
 
     public String getId() {
@@ -44,17 +35,5 @@ public class Product {
 
     public String getName() {
         return name;
-    }
-
-    public Double getCost() {
-        return cost;
-    }
-
-    public Double getPrice() {
-        return price;
-    }
-
-    public String getDescription() {
-        return description;
     }
 }
