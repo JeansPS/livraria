@@ -21,17 +21,21 @@
                     <table class="table table-hover table-responsive" ng-show="productTypes.length">
                         <tbody>
                             <tr>
-                                <th style="width:70%">Nome</th>
-                                <th>Criado em</th>
+                                <th style="width:60%">Nome</th>
+                                <th class="hidden-xs">Criado em</th>
                                 <th></th>
                             </tr>
                             <tr ng-repeat="productType in productTypes">
                                 <td>{{productType.name}}</td>
-                                <td>{{productType.createdAt | date:"dd/MM/yyyy"}}</td>
+                                <td class="hidden-xs">{{productType.createdAt | date:"dd/MM/yyyy"}}</td>
                                 <td>
                                     <button type="button" class="btn btn-primary btn-sm"
                                             ng-click="select(productType)" title="Editar">
                                         <i class="fa fa-pencil"></i>
+                                    </button>
+                                    <button type="button" class="btn btn-danger btn-sm"
+                                            ng-click="remove(productType)" title="Excluir">
+                                        <i class="fa fa-trash"></i>
                                     </button>
                                 </td>
                             </tr>

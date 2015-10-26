@@ -1,5 +1,5 @@
-app.controller('ProductTypesController', ['$scope', '$stateParams', '$location', 'ProductTypes',
-    function($scope, $stateParams, $location, ProductTypes) {
+app.controller('ProductTypesController', ['$scope', '$stateParams', '$location', 'ProductTypes', 'dialogs',
+    function($scope, $stateParams, $location, ProductTypes, $dialogs) {
 
         $scope.select = function(productType) {
           $scope.productType = angular.copy(productType);
@@ -47,12 +47,16 @@ app.controller('ProductTypesController', ['$scope', '$stateParams', '$location',
             $scope.updateToggle = false;
         };
 
-        $scope.remove = function() {
-            $scope.productType.$remove(
-                function() {
-                    $location.path('productTypes');
-                }
-            )
-        }
+        $scope.remove = function(productType) {
+            var dlg = $dialogs.confirm('Confirmação', 'Tem certeza que deseja excluir?');
+
+            dlg.result.then(function(btn){
+                productType.$remove(
+                    function() {
+                        $scope.find();
+                    }
+                );
+            }, function(btn){});
+        };
     }
 ]);
